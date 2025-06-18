@@ -23,10 +23,10 @@ export const LoginForm = () => {
       }))
 
       // set cookie
-      document.cookie = `${COOKIE_KEY}=${encodedCookieValue}; path=/; max-age=${MAX_COOKIE_LIFE}`;
+      document.cookie = `${COOKIE_KEY}=${encodedCookieValue}; path=/; max-age=${MAX_COOKIE_LIFE}`
 
       // reroute to login
-      router.push('/');
+      router.push('/')
     }
   }
 

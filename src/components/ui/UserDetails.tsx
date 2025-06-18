@@ -1,30 +1,18 @@
-'use client'
-
 import { COOKIE_KEY } from "@/constants"
-import { useEffect, useState } from "react"
+import { cookies } from "next/headers"
 
-export const UserDetails = () => {
-  const [loginInfo, setLoginInfo] = useState<{ user: string; job: string } | null>(null)
-
-  useEffect(() => {
-    // get raw cookie data
-    const cookieData = document.cookie
-      .split('; ')
-      .find(row => row.startsWith(`${COOKIE_KEY}=`))
-
-    if (cookieData) {
-      const value = decodeURIComponent(cookieData.split('=')[1])
-      const parsed = JSON.parse(value)
-      setLoginInfo(parsed)
-    }
-  }, [])
-
+export const UserDetails = async () => {
+  const cookieStore = await cookies()
+  const loginInfo = cookieStore.get(COOKIE_KEY)
+  
   if (!loginInfo) { return null }
+
+  const parsedLoginInfo = JSON.parse(loginInfo.value)
 
   return (
     <div>
-      <p>{loginInfo.user}</p>
-      <p>{loginInfo.job}</p>
+      <p>{parsedLoginInfo.user}</p>
+      <p>{parsedLoginInfo.job}</p>
     </div>
   )
 }

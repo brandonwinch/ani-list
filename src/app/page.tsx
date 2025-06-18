@@ -23,8 +23,8 @@ const GET_ANIME = gql`
   }
 `
 
-export default async function Home({ params }: { params: { page?: string | string[] } }) {
-  const { page } = await params
+export default async function Home({ searchParams }: { searchParams: { page?: string | string[] } }) {
+  const { page } = await searchParams
   const parsedPage = Array.isArray(page) ? page[0] : page
   const pageNum = parsedPage ? parseInt(parsedPage, 10) : 1
 

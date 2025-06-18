@@ -1,7 +1,7 @@
 "use client"
 
-import { COOKIE_KEY } from "@/constants";
-import { useRouter } from "next/navigation";
+import { COOKIE_KEY } from "@/constants"
+import { useRouter } from "next/navigation"
 import { FormEvent } from "react"
 
 const MAX_COOKIE_LIFE = 86400 // 1 day

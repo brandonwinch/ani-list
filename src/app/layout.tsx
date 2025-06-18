@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ChakraClientProvider from "@/components/ui/ChakraClientProvider";
+import { ApolloWrapper } from "./ApolloWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

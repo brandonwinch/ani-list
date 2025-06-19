@@ -1,7 +1,7 @@
 "use client"
 
 import { COOKIE_KEY } from '@/constants'
-import { Button, Icon } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 
 export const LogoutButton = () => {

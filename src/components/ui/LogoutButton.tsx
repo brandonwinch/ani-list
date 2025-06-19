@@ -1,6 +1,7 @@
 "use client"
 
 import { COOKIE_KEY } from '@/constants'
+import { Button, Icon } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 
 export const LogoutButton = () => {
@@ -13,8 +14,8 @@ export const LogoutButton = () => {
   }
 
   return (
-    <button onClick={handleClick}>
+    <Button variant="outline" onClick={handleClick}>
       Logout
-    </button>
+    </Button>
   )
 }

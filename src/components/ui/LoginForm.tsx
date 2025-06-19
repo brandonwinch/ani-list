@@ -3,6 +3,14 @@
 import { COOKIE_KEY } from "@/constants"
 import { useRouter } from "next/navigation"
 import { FormEvent } from "react"
+import {
+  Button,
+  Center,
+  Container,
+  Field,
+  Fieldset,
+  Input,
+} from "@chakra-ui/react"
 
 const MAX_COOKIE_LIFE = 86400 // 1 day
 
@@ -31,18 +39,29 @@ export const LoginForm = () => {
   }
 
   return (
-    <form id="login" onSubmit={handleSubmit}>
-      <label htmlFor="user">
-        username
-      </label>
-      <input id="user" name="user" required />
+    <Center flex="1">
+      <Container maxW="600px">
+        <form id="login" onSubmit={handleSubmit}>
+          <Fieldset.Root size="lg">
+            <Fieldset.Content>
+              <Field.Root required>
+                <Field.Label>User</Field.Label>
+                <Input name="user" />
+              </Field.Root>
 
-      <label htmlFor="job">
-        job title
-      </label>
-      <input id="job" name="job" required />
+              <Field.Root required>
+                <Field.Label>Job Title</Field.Label>
+                <Input name="job" />
+              </Field.Root>
+            </Fieldset.Content>
 
-      <button type="submit">Login</button>
-    </form>
+            <Fieldset.ErrorText>
+              Some fields are invalid. Please check them.
+            </Fieldset.ErrorText>
+            <Button type="submit">Login</Button>
+          </Fieldset.Root>
+        </form>
+      </Container>
+    </Center>
   )
 }

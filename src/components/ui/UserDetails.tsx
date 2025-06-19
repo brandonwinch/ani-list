@@ -1,4 +1,5 @@
 import { COOKIE_KEY } from "@/constants"
+import { Box, Text } from "@chakra-ui/react"
 import { cookies } from "next/headers"
 
 export const UserDetails = async () => {
@@ -10,9 +11,13 @@ export const UserDetails = async () => {
   const parsedLoginInfo = JSON.parse(loginInfo.value)
 
   return (
-    <div>
-      <p>{parsedLoginInfo.user}</p>
-      <p>{parsedLoginInfo.job}</p>
-    </div>
+    <Box>
+      <Text fontWeight="bold">
+        {parsedLoginInfo.user}
+      </Text>
+      <Text fontSize="sm" color="gray.500">
+        {parsedLoginInfo.job}
+      </Text>
+    </Box>
   )
 }

@@ -30,7 +30,7 @@ const GET_ANIME = gql`
   }
 `
 
-export default async function Home({ searchParams }: { searchParams: { page?: string | string[] } }) {
+export default async function Home({ searchParams }: { searchParams: Promise<{ page?: string | string[] }> }) {
   const { page } = await searchParams
   const parsedPage = Array.isArray(page) ? page[0] : page
   const pageNum = parsedPage ? parseInt(parsedPage, 10) : 1
@@ -52,6 +52,7 @@ export default async function Home({ searchParams }: { searchParams: { page?: st
         <LogoutButton />
       </Flex>
       <SimpleGrid columns={{ sm: 2, md: 3 }} columnGap="2" rowGap="4">
+        {/* @ts-expect-error: GQL not typed yet. */}
         {media.map(item => (
           <Box key={item.id}>
             <ListItem

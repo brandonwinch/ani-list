@@ -1,6 +1,5 @@
 "use client"
 
-import { COOKIE_KEY } from "@/constants"
 import { useRouter } from "next/navigation"
 import { FormEvent } from "react"
 import {
@@ -11,8 +10,7 @@ import {
   Fieldset,
   Input,
 } from "@chakra-ui/react"
-
-const MAX_COOKIE_LIFE = 86400 // 1 day
+import { COOKIE_KEY } from "@/constants"
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -31,7 +29,7 @@ export const LoginForm = () => {
       }))
 
       // set cookie
-      document.cookie = `${COOKIE_KEY}=${encodedCookieValue}; path=/; max-age=${MAX_COOKIE_LIFE}`
+      document.cookie = `${COOKIE_KEY}=${encodedCookieValue}; path=/; max-age=${86400}` // 1 day
 
       // reroute to login
       router.push('/')

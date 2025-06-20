@@ -8,6 +8,7 @@ export const LogoutButton = () => {
   const router = useRouter()
 
   const handleClick = () => {
+    // clear cookie
     document.cookie = `${COOKIE_KEY}=; path=/; max-age=0`
 
     router.push('/login')

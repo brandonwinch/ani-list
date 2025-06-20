@@ -1,5 +1,3 @@
-'use client'
-
 import { Flex, Container, Box } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 

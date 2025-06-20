@@ -14,7 +14,7 @@ export const AnimeCard = ({ title, idMal, episodeCount, imgSrc, bannerImgSrc, st
     <Dialog.Root>
       <Dialog.Trigger w="full">
         <Image src={imgSrc} alt={title} h="320px" w="auto" mx="auto" />
-        <Text fontWeight="bold">{title}</Text>
+        <Text fontWeight="bold" as="span">{title}</Text>
       </Dialog.Trigger>
 
       <Dialog.Backdrop />

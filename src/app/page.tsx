@@ -1,5 +1,5 @@
 import NextLink from "next/link"
-import { Link, Box, Button, Text, Container, Flex, SimpleGrid } from "@chakra-ui/react"
+import { Link, Box, Button, Text, Container, Flex, SimpleGrid, Center } from "@chakra-ui/react"
 import { AnimeCard } from "@/components/server/AnimeCard"
 import { LogoutButton } from "@/components/ui/LogoutButton"
 import { UserDetails } from "@/components/server/UserDetails"
@@ -10,7 +10,35 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
   const parsedPage = Array.isArray(page) ? page[0] : page
   const pageNum = parsedPage ? parseInt(parsedPage, 10) : 1
 
-  const { items, pageInfo } = await getAnimeCards(pageNum)
+  const { items, pageInfo, error } = await getAnimeCards(pageNum)
+
+  if (error) {
+    return (
+      <Container maxW="800px">
+        <Flex justify="space-between" my={6}>
+          <UserDetails />
+          <LogoutButton />
+        </Flex>
+        <Center>
+          There was an error! Please refresh and try again.
+        </Center>
+      </Container>
+    )
+  }
+
+  if (!items.length) {
+    return (
+      <Container maxW="800px">
+        <Flex justify="space-between" my={6}>
+          <UserDetails />
+          <LogoutButton />
+        </Flex>
+        <Center>
+          No results!
+        </Center>
+      </Container>
+    )
+  }
   
   return (
     <Container maxW="800px">
@@ -25,7 +53,6 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
           </Box>
         ))}
       </SimpleGrid>
-
       <Flex justify="space-between" align="center" my={4}>
         <Link as={NextLink} href={`/?page=${pageNum - 1}`}>
           <Button disabled={pageInfo.currentPage === 1}>
@@ -38,7 +65,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
             Next
           </Button>
         </Link>
-      </Flex>
+      </Flex>      
     </Container>
   )
 }
